@@ -1,0 +1,29 @@
+name: Build and Deploy Python Code
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Run Python scripts
+        run: |
+          python script1.py
+          python script2.py
+          python script3.py
+          python script4.py
+          python script5.py
+
+      # Add additional build and deploy steps as needed
