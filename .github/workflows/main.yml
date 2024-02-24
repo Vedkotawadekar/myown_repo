@@ -1,0 +1,24 @@
+name: Notification
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  notify:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Slack notification
+      uses: rtCamp/action-slack-notify@v2
+      with:
+        status: ${{ job.status }}
+        text: "Workflow ${{ github.workflow }} completed: ${{ job.status }}"
+        author_name: GitHub Actions
+        mention: '@channel'
+        channel: 'my-channel'
+        emoji: ':rocket:'
